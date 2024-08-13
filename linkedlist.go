@@ -1,6 +1,11 @@
-package linkedlist
+package ds
 
 import "fmt"
+
+type ListNode[T any] struct {
+	Data T
+	Next *ListNode[T]
+}
 
 type LinkedList[T any] struct {
 	Head *ListNode[T]
