@@ -13,17 +13,19 @@ type LinkedList[T any] struct {
 	Size uint
 }
 
-func (ll *LinkedList[T]) Add(data T) {
+func (ll *LinkedList[T]) Add(data T) *ListNode[T] {
 	defer func() {
 		ll.Size++
 	}()
+	node := &ListNode[T]{Data: data}
 	if ll.Head == nil {
-		ll.Head = &ListNode[T]{Data: data}
+		ll.Head = node
 		ll.Tail = ll.Head
-		return
+		return node
 	}
-	ll.Tail.Next = &ListNode[T]{Data: data}
+	ll.Tail.Next = node
 	ll.Tail = ll.Tail.Next
+	return node
 }
 
 func (ll *LinkedList[T]) Remove(node *ListNode[T]) error {
